@@ -1,0 +1,58 @@
+# content-digest config — copy to digest_config.yml and edit paths for your stack.
+# {date} is replaced with the run date (YYYY-MM-DD).
+
+date: today  # or a specific YYYY-MM-DD
+
+output:
+  latest: "~/your-brain/Projects/personal/content-digest.md"      # always overwritten
+  archive: "~/your-brain/Projects/personal/content-digest-archive/{date}.md"
+
+# Source files to read and reorganize. Order matters — they go top-down in the digest.
+sources:
+  - label: "Top picks (from pitcher)"
+    path: "~/your-brain/Agents/mining/output/{date}/weekly-topic_pitcher.md"
+    section_extract: "Top 5 picks"   # extract just this section header's body
+
+  - label: "Full pitch slate"
+    path: "~/your-brain/Agents/mining/output/{date}/weekly-topic_pitcher.md"
+    section_extract: "Pitches"
+
+  - label: "Cross-platform viral signals"
+    path: "~/your-brain/Agents/viral-scout/stats/{date}.json"
+    type: json                        # flatten dict/list into bullet list
+
+  - label: "Opportunity brief"
+    path: "~/your-brain/Agents/viral-scout/opportunity-brief-{date}.md"
+    truncate: 6000
+
+  - label: "Fresh Swanson bridges (last 14d)"
+    glob: "~/your-brain/Agents/swanson/bridges/validated/*.md"
+    max_age_days: 14
+    extract_titles: true              # show "# Bridge: ..." headings only
+
+  - label: "Today's harvests"
+    glob: "~/your-brain/Agents/swanson/corpus/*-{date}.md"
+    section_extract: "B-Term Candidates"
+
+  - label: "Open tensions"
+    path: "~/your-brain/Agents/mining/output/{date}/weekly-debate.md"
+    section_extract: "Contested points"
+
+  - label: "This week — what you worked on"
+    path: "~/your-brain/Agents/mining/output/{date}/weekly-curator.md"
+    truncate: 5000
+
+  - label: "Positions & evolutions"
+    path: "~/your-brain/Agents/mining/output/{date}/weekly-argument_tracker.md"
+    truncate: 4000
+
+# REG registry section
+registry:
+  enable: true
+  path: "~/your-brain/Departments/creative/registries/your-brand.md"
+  exports_glob: "~/your-projects/your-brand/exports/REG-*/copy.md"
+  stale_days: 30                      # ready/draft REGs untouched this long -> flagged stale
+  statuses:
+    ready: ["ready", "draft"]
+    shipped: ["published", "posted", "live"]
+    parked: ["skipped", "abandoned", "killed"]
