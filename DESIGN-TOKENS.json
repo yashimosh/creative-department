@@ -1,0 +1,144 @@
+{
+  "_template": true,
+  "_instructions": "Copy this file as DESIGN-TOKENS-{client-slug}.json and fill in the client's values. All visual production skills reference this file for exact brand specifications.",
+
+  "brand": {
+    "name": "[Client Name]",
+    "updated": "YYYY-MM-DD"
+  },
+
+  "color": {
+    "primary": {
+      "value": "#000000",
+      "name": "Brand Primary",
+      "usage": "Primary brand color — used for headlines, CTAs, key UI elements"
+    },
+    "secondary": {
+      "value": "#000000",
+      "name": "Brand Secondary",
+      "usage": "Supporting color — used for accents, secondary elements"
+    },
+    "accent": {
+      "value": "#000000",
+      "name": "Brand Accent",
+      "usage": "Highlight color — used sparingly for emphasis"
+    },
+    "background": {
+      "light": "#FFFFFF",
+      "dark": "#000000"
+    },
+    "text": {
+      "primary": "#000000",
+      "secondary": "#666666",
+      "inverse": "#FFFFFF"
+    },
+    "semantic": {
+      "success": "#000000",
+      "warning": "#000000",
+      "error": "#000000",
+      "info": "#000000"
+    },
+    "approved_combinations": [
+      {
+        "name": "Default",
+        "background": "#FFFFFF",
+        "text": "#000000",
+        "accent": "#000000"
+      }
+    ]
+  },
+
+  "typography": {
+    "heading": {
+      "family": "[Font Name]",
+      "weights": [400, 700],
+      "fallback": "sans-serif"
+    },
+    "body": {
+      "family": "[Font Name]",
+      "weights": [400, 500],
+      "fallback": "sans-serif"
+    },
+    "display": {
+      "family": "[Font Name]",
+      "weights": [700, 900],
+      "fallback": "sans-serif"
+    },
+    "scale": {
+      "xs": "12px",
+      "sm": "14px",
+      "base": "16px",
+      "lg": "18px",
+      "xl": "20px",
+      "2xl": "24px",
+      "3xl": "30px",
+      "4xl": "36px",
+      "5xl": "48px",
+      "6xl": "64px"
+    },
+    "line_height": {
+      "tight": 1.2,
+      "base": 1.5,
+      "relaxed": 1.75
+    },
+    "letter_spacing": {
+      "tight": "-0.02em",
+      "normal": "0",
+      "wide": "0.05em",
+      "caps": "0.1em"
+    }
+  },
+
+  "spacing": {
+    "unit": "8px",
+    "scale": {
+      "xs": "4px",
+      "sm": "8px",
+      "md": "16px",
+      "lg": "24px",
+      "xl": "32px",
+      "2xl": "48px",
+      "3xl": "64px",
+      "4xl": "96px"
+    }
+  },
+
+  "layout": {
+    "grid": {
+      "columns": 12,
+      "gutter": "24px",
+      "max_width": "1200px"
+    },
+    "border_radius": {
+      "none": "0",
+      "sm": "4px",
+      "md": "8px",
+      "lg": "16px",
+      "full": "9999px"
+    }
+  },
+
+  "imagery": {
+    "photography_style": "[e.g. documentary, editorial, lifestyle, studio]",
+    "color_treatment": "[e.g. desaturated, vibrant, warm tones, cool tones]",
+    "cropping": "[e.g. tight, editorial, centered, rule of thirds]",
+    "filters": "[e.g. none, slight grain, high contrast]"
+  },
+
+  "motion": {
+    "duration": {
+      "fast": "150ms",
+      "normal": "300ms",
+      "slow": "500ms"
+    },
+    "easing": {
+      "default": "ease-in-out",
+      "enter": "ease-out",
+      "exit": "ease-in"
+    }
+  },
+
+  "anti_patterns": [
+    "Description of what to never do and why"
+  ]
+}

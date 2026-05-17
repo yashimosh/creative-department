@@ -1,0 +1,12 @@
+# Private per-client notes — see INTEGRATION.md Pattern 4
+# These patterns let operators keep private local annotations alongside
+# client folders without shipping them in any public release of the CD.
+
+clients/*/PRIVATE-*.md
+clients/*/*.private.md
+**/PRIVATE-*.md
+**/*.private.md
+
+# Local config (operator-specific URLs, workspace IDs, etc.)
+local-config.md
+*.local.md
