@@ -1,0 +1,46 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-05-14",
+  "skills": [
+    {
+      "id": "audio-enhance",
+      "name": "Audio Enhance",
+      "description": "Voice cleanup and noise removal using Resemble Enhance (local GPU)",
+      "tier": "free",
+      "version": "1.0.0",
+      "category": "production",
+      "tags": ["audio", "voice", "cleanup", "enhancement", "resemble"],
+      "install_url": "https://raw.githubusercontent.com/yashimosh/creative-department/main/audio-enhance/",
+      "files": ["SKILL.md"],
+      "requires": ["python>=3.10", "resemble-enhance"],
+      "author": "yashimosh"
+    },
+    {
+      "id": "whisper",
+      "name": "Whisper Transcription",
+      "description": "Local speech-to-text using faster-whisper; drives Claude-based edit decisions",
+      "tier": "free",
+      "version": "1.0.0",
+      "category": "production",
+      "tags": ["audio", "transcription", "captions", "whisper", "srt"],
+      "install_url": "https://raw.githubusercontent.com/yashimosh/creative-department/main/whisper/",
+      "files": ["SKILL.md"],
+      "requires": ["python>=3.9", "faster-whisper"],
+      "author": "yashimosh"
+    },
+    {
+      "id": "remotion-studio",
+      "name": "Remotion Studio",
+      "description": "Motion graphics and programmatic video production using Remotion + React",
+      "tier": "free",
+      "version": "1.0.0",
+      "category": "motion",
+      "tags": ["motion", "video", "animation", "remotion", "react"],
+      "install_url": "https://raw.githubusercontent.com/yashimosh/creative-department/main/remotion-studio/",
+      "files": ["package.json"],
+      "requires": ["node>=18"],
+      "author": "yashimosh"
+    }
+  ],
+  "categories": ["identity", "motion", "editorial", "brand", "production", "strategy"]
+}

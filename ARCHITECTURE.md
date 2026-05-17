@@ -105,6 +105,7 @@ Skips: Strategy (direction is usually known), Approval (lightweight — Yash rev
 **Councils:** Direction Council (almost always), Layout Council (for design system), Innovation Lab (for visual exploration)
 **Notion:** No — branding projects are not individual content pieces. Track in project file instead.
 **Typical scope:** Multi-session, spans days/weeks
+**DESIGN.md:** Every branding project produces a `DESIGN.md` file — machine-readable design tokens (colors, typography, spacing, components). Saved to `clients/{client-slug}/DESIGN.md`. Validated with `npx @google/design.md lint`. This is the authoritative brand spec consumed by all production skills.
 
 ```
 DISCOVERY → STRATEGY → PRODUCTION → REVIEW → DELIVERY
@@ -121,6 +122,7 @@ Skips: Registry (no REG-ID — this isn't content, it's infrastructure)
 **Councils:** Layout Council (for complex layouts), Quality Council (for final UI review)
 **Notion:** No — track in project file. Design deliverables aren't "content."
 **Typical scope:** Multi-session project
+**DESIGN.md:** If a `DESIGN.md` exists for the client (`clients/{client-slug}/DESIGN.md`), load it first — token values override visual descriptions in CLIENT.md. If no DESIGN.md exists and this is a greenfield product, create one during the design system phase.
 
 ```
 RESEARCH → WIREFRAMES → PROTOTYPES → REVIEW → HANDOFF

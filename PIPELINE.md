@@ -21,7 +21,7 @@ INTAKE → STRATEGY → PRODUCTION → REVIEW → REVISION → APPROVAL → DELI
 |---|---|
 | Receive request | Raw idea, client ask, or internal initiative |
 | Fill the brief | Use `BRIEF-TEMPLATE.md` — all required fields must be complete |
-| Load client context | Read `CLIENT.md`, `BRAND-VOICE.md`, `DESIGN-RATIONALE.md`, `CREATIVE-PLAYBOOK.md` |
+| Load client context | Read `CLIENT.md`, `BRAND-VOICE.md`, `DESIGN-RATIONALE.md`, `CREATIVE-PLAYBOOK.md` — and `clients/{client}/DESIGN.md` if it exists (authoritative brand tokens) |
 | Confirm scope | Deliverables, platforms, timeline, constraints are clear |
 | **Create Notion row** | Create entry in Content Registry — Status: `Idea` or `Brief`, fill Title, Project, Format, Platform |
 

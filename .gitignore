@@ -10,3 +10,14 @@ clients/*/*.private.md
 # Local config (operator-specific URLs, workspace IDs, etc.)
 local-config.md
 *.local.md
+
+node_modules/
+
+# User config — never commit these
+config/license.json
+config/telemetry.json
+config/installed.json
+
+# Update system artifacts
+.update-dismissed
+.update-lock

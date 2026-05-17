@@ -1,0 +1,21 @@
+{
+  "name": "creative-department",
+  "version": "1.0.0",
+  "description": "An opinionated agentic skill package for [Claude](https://claude.com) that runs creative production — brand voice, design, review, publishing — as a pipeline, not a toolkit.",
+  "main": "index.js",
+  "scripts": {
+    "setup": "node setup.mjs",
+    "update:check": "node update-system.mjs check",
+    "update:apply": "node update-system.mjs apply",
+    "registry:list": "node registry.mjs list",
+    "license:status": "node license.mjs status",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@google/design.md": "^0.1.0"
+  }
+}

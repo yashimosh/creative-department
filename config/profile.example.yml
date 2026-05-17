@@ -1,0 +1,14 @@
+# creative-department profile
+# Copy to config/profile.yml and edit, or run: node setup.mjs
+
+name: ""
+use: personal   # personal | team | agency
+timezone: ""
+
+brand:
+  name: ""
+  url: ""
+  tone: ""          # e.g. direct, editorial, warm, technical
+
+skills:
+  default_category: ""   # motion | production | editorial | brand | strategy

@@ -8,6 +8,19 @@ Most agentic design tooling is horizontal — neutral infrastructure for anyone.
 
 ---
 
+## Tiers
+
+| Tier | What you get |
+|---|---|
+| **Free** | Full core system, all bundled skills, registry, update tether |
+| **Pro** | Premium skills, priority updates — [yashimosh.com/creative-department](https://yashimosh.com/creative-department) |
+| **Studio** | Team seats, custom skill config, white-label builds — same link |
+| **Community** | Skills contributed by others, reviewed and approved by the maintainer |
+
+Pro and Studio licenses are activated with `node license.mjs activate <key>`. Free tier requires nothing.
+
+---
+
 ## What's in the package
 
 ```
