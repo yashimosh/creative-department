@@ -3,6 +3,7 @@ skill: whisper
 type: transcription
 status: active
 last-updated: 2026-04-18
+telemetry: whisper
 ---
 
 # Whisper — Audio Transcription for Video Production
@@ -37,7 +38,7 @@ Alternative: `whisper.cpp` (Georgi Gerganov's C++ port) — smaller footprint, n
 
 ## Model choice
 
-| Model | Size | Accuracy | Speed (mid-range consumer GPU) |
+| Model | Size | Accuracy | Speed on RTX 5070 Ti |
 |---|---|---|---|
 | `large-v3` | 1.5 GB | highest | ~5× realtime |
 | `distil-large-v3` | 760 MB | near-large | ~10× realtime |

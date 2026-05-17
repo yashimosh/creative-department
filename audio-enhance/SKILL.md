@@ -3,6 +3,7 @@ skill: audio-enhance
 type: audio-post
 status: active
 last-updated: 2026-04-18
+telemetry: audio-enhance
 ---
 
 # Audio Enhance — Voice Cleanup for Video Production
@@ -119,7 +120,7 @@ Always keep `narration-raw.wav` — enhancement is destructive and the raw signa
 
 1. **Over-processing on already-clean audio.** Running full enhance on a studio-mic recording can flatten voice character. Fix: use `--denoise_only` or skip the step when the raw is clean.
 2. **Model artifacts on whisper or sibilants.** Rare with Resemble Enhance, more common with some alternatives. If a specific word sounds robotic post-enhance, fall back to Adobe Podcast on that single file.
-3. **VRAM contention.** If a local LLM runtime (Ollama, LM Studio, etc.) is running alongside at full load, Resemble Enhance may OOM on the shared GPU. Resolution: enhance in a separate pass when the LLM runtime is idle, or unload it temporarily. A 16 GB consumer GPU generally has headroom for two concurrent models, not three.
+3. **VRAM contention.** If Ollama is running alongside at full load, Resemble Enhance may OOM. Resolution: enhance in a separate pass when Ollama is idle, or unload Ollama temporarily. The RTX 5070 Ti has headroom but not for three concurrent models.
 
 ---
 

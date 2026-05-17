@@ -4,6 +4,24 @@
 
 ---
 
+## Context Loading — What Every Skill Reads First
+
+Before doing any work, every skill in this department loads context in this order:
+
+| File | What it provides | Required? |
+|---|---|---|
+| `CONTEXT.md` | Operational context — who you are, your projects, tools, history, workspace | Required if no central brain |
+| `CLIENT.md` | Brand/client identity | Required |
+| `BRAND-VOICE.md` | Voice, tone, language rules, platform adaptations | Required |
+| `CREATIVE-PLAYBOOK.md` | What works, what doesn't, skill-specific notes | Strongly recommended |
+| `ANTI-AI-VOICE.md` | Universal anti-pattern rules | Always |
+
+**If you have a central brain** (`~/claude-brain/` or equivalent): `CONTEXT.md` is optional — your brain already provides this context. Skills will read from the brain paths specified in their SKILL.md files.
+
+**If you don't have a central brain**: `CONTEXT.md` is required. It replaces the brain's project files, recent-changes, workspace state, and decision history. Skills fall back gracefully — no brain read, no Notion write — and work from the files in this directory only.
+
+---
+
 ## The Problem Today
 
 The creative department has 30+ specialist skills and 7 swarm architectures — but they operate as freelancers, not as an organization. Every skill is user-invoked. No skill talks to another skill automatically. No skill writes to Notion. The pipeline exists on paper (PIPELINE.md) but nothing enforces it. HANDOFF.md is a template nobody fills in. The result: Yash is the routing layer, the state tracker, the handoff messenger, and the quality gate — all manually.
