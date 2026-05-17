@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  typecheck-remotion:
+    name: Typecheck remotion-studio
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: remotion-studio
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: remotion-studio/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+
+  check-private-leaks:
+    name: Check for private-content leaks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fail if private strings appear in repo
+        run: |
+          set -e
+          # Patterns that must never appear in the public repo.
+          # This list complements the initial audit; extend if needed.
+          FAIL=0
+          for pattern in \
+            "Raaznet" \
+            "digital rights in Iran" \
+            "15\\.8GB of 16"; do
+            if grep -rI --exclude-dir=.git --exclude-dir=node_modules -n "$pattern" .; then
+              echo "::error::Private string '$pattern' found in repo"
+              FAIL=1
+            fi
+          done
+          if [ "$FAIL" -eq 1 ]; then
+            exit 1
+          fi
+          echo "No private strings found."
+
+  check-font-files:
+    name: Check no licensed font files committed
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fail if OTF/TTF/WOFF font files are committed
+        run: |
+          set -e
+          FOUND=$(find . -type f \( -iname "*.otf" -o -iname "*.ttf" -o -iname "*.woff" -o -iname "*.woff2" \) -not -path "./node_modules/*" -not -path "./.git/*" || true)
+          if [ -n "$FOUND" ]; then
+            echo "::error::Font files should not be committed — they are licensed. Found:"
+            echo "$FOUND"
+            exit 1
+          fi
+          echo "No font files in repo."

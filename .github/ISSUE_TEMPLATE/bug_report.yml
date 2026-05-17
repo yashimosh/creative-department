@@ -1,0 +1,55 @@
+name: Bug report
+description: Something in this package is not working the way the docs say it should.
+title: "bug: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug. Specificity helps — the more precise the report, the faster the fix.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which part of the package?
+      options:
+        - Framework docs (ARCHITECTURE / PIPELINE / etc.)
+        - remotion-studio (motion graphics skill)
+        - whisper (transcription skill)
+        - audio-enhance (voice cleanup skill)
+        - clients/example-brand (worked example)
+        - CI / GitHub workflows
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What you ran, what you expected, what actually happened.
+      placeholder: |
+        Ran `npm run studio` in remotion-studio/ and expected the studio to open. Instead got...
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Node version, Python version (if relevant), GPU (if relevant for whisper/audio-enhance).
+      placeholder: |
+        - OS: macOS 14.5
+        - Node: v22.14.0
+        - Python: 3.11
+        - GPU: none / details
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / error output
+      render: shell
+    validations:
+      required: false

@@ -1,0 +1,32 @@
+name: Auto-respond to new issues
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const body = [
+              "Thanks for opening an issue.",
+              "",
+              "This is a small maintained project — the maintainer reviews issues within ~48 hours. A few notes to help triage:",
+              "",
+              "- **Bug reports:** helpful if you can include the specific skill / file path, what you expected, and what happened.",
+              "- **Feature requests:** the scope here is deliberately narrow (see `CONTRIBUTING.md`). Feature PRs need an open issue first so we can talk through fit before anyone writes code.",
+              "- **Scope questions:** fine to ask — the answer is sometimes \"out of scope for this repo,\" which usually means \"fork it and keep going.\"",
+              "",
+              "If this is urgent enough to need faster than 48 hours, say so in the issue — I'll prioritize.",
+            ].join("\n");
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: body,
+            });

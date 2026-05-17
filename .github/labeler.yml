@@ -1,0 +1,61 @@
+# Path-based auto-labels for PRs.
+# See: https://github.com/actions/labeler
+
+docs:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.md"
+          - "**/*.mdx"
+
+remotion-studio:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "remotion-studio/**"
+
+whisper:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "whisper/**"
+
+audio-enhance:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "audio-enhance/**"
+
+example-brand:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "clients/example-brand/**"
+
+registry:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "REGISTRY.md"
+          - "REGISTRY-TEMPLATE.md"
+          - "registries/**"
+
+pipeline:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "PIPELINE.md"
+          - "HANDOFF.md"
+          - "BRIEF-TEMPLATE.md"
+
+architecture:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "ARCHITECTURE.md"
+          - "DECISIONS.md"
+          - "INTEGRATION.md"
+
+brand-voice:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "BRAND-VOICE.md"
+          - "CLIENT.md"
+          - "CREATIVE-PLAYBOOK.md"
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/**"

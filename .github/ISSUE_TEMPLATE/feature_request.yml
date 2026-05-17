@@ -1,0 +1,45 @@
+name: Feature request / scope question
+description: Propose a change, extension, or new skill. Scope here is deliberately narrow — open the conversation before writing code.
+title: "feature: "
+labels: ["feature", "needs-scope-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Scope in this repo is intentionally narrow. Per `CONTRIBUTING.md`, feature PRs require an open issue first — that way we talk through fit before either of us spends time on code.
+
+        Fit questions: is this a pattern that benefits every operator using the package? Or is it your specific workflow? Both are fine; they just belong in different places (this repo vs. your fork).
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What's the proposal?
+      description: One paragraph is better than three.
+    validations:
+      required: true
+
+  - type: textarea
+    id: why-in-scope
+    attributes:
+      label: Why does this belong in this package, rather than in a fork?
+      description: Examples — it's a pattern every operator needs / it fixes an ambiguity in the docs / it unlocks a class of use cases.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternative
+    attributes:
+      label: What's the simplest alternative?
+      description: E.g. a doc note, a config option, a separate skill folder someone else could publish.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: ack
+    attributes:
+      label: Before submitting
+      options:
+        - label: I've read `CONTRIBUTING.md` and the scope statement in `README.md`.
+          required: true
+        - label: I understand this issue is a conversation starter, not a commitment to merge.
+          required: true
