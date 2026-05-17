@@ -1,0 +1,93 @@
+# Grade Iterator recipe library
+# Each entry has: description, and EITHER `filter` (full chain, replaces base)
+# or `delta` (appended to the base filter chain).
+#
+# Combine recipes by joining slugs with `+` on the CLI:
+#   python iterate_grade.py variations frame.jpg --base "strong+more-sat+pull-highlights"
+
+# ─── Base grades (full filter chains) ─────────────────────────────────────
+weak:
+  description: "Mild log-to-rec709, gentle contrast"
+  filter: "eq=contrast=1.18:saturation=1.25:gamma=0.93"
+
+medium:
+  description: "Standard S-curve + saturation boost"
+  filter: "curves=all='0/0 0.25/0.18 0.5/0.5 0.75/0.85 1/1',eq=saturation=1.5:contrast=1.05"
+
+strong:
+  description: "Aggressive S-curve, +85% saturation — good default for most LOG"
+  filter: "curves=all='0/0 0.2/0.10 0.5/0.5 0.8/0.92 1/1',eq=saturation=1.85:contrast=1.10:gamma=1.02"
+
+very-strong:
+  description: "Even more aggressive — flat S-Log2-style footage"
+  filter: "curves=all='0/0 0.15/0.05 0.5/0.5 0.85/0.95 1/1',eq=saturation=2.1:contrast=1.15:gamma=1.05"
+
+aggressive-protected:
+  description: "Strong contrast with protected highlights (top cap at 0.985)"
+  filter: "curves=all='0/0 0.11/0.025 0.42/0.42 0.72/0.85 1/0.985',eq=saturation=2.5:contrast=1.125:gamma=1.05"
+
+# ─── Deltas (additive, appended after base) ───────────────────────────────
+more-sat:
+  description: "Pushes saturation further (+0.2-0.4 on top of base)"
+  delta: "eq=saturation=2.7"  # use last sat wins behavior
+
+less-sat:
+  description: "Eases saturation back"
+  delta: "eq=saturation=1.6"
+
+more-contrast:
+  description: "Steeper S-curve, more dramatic shadows"
+  delta: "curves=all='0/0 0.08/0 0.4/0.42 0.72/1 1/1'"
+
+less-contrast:
+  description: "Gentler curve, more shadow detail"
+  delta: "curves=all='0/0 0.12/0.05 0.5/0.5 0.78/0.88 1/1'"
+
+pull-highlights:
+  description: "Recover blown highlights (cap top at 0.85)"
+  delta: "curves=all='0/0 0.1/0 0.4/0.4 0.7/0.85 1/1'"
+
+shoulder-rolloff:
+  description: "Soft shoulder at the very top — protects against burned whites"
+  delta: "curves=all='0/0 0.1/0 0.4/0.4 0.7/0.9 0.9/0.95 1/0.97'"
+
+lift-shadows:
+  description: "Lift the bottom slightly for more shadow detail"
+  delta: "curves=all='0/0 0.12/0.05 0.4/0.4 0.7/0.85 1/1'"
+
+darker:
+  description: "Lower overall gamma — moodier"
+  delta: "eq=gamma=1.15"
+
+brighter:
+  description: "Higher gamma — lighter overall"
+  delta: "eq=gamma=0.95"
+
+warmer:
+  description: "Midtone red lift, slight blue drop in highlights"
+  delta: "colorbalance=rm=0.04:gm=0.02:bh=-0.06"
+
+cooler:
+  description: "Cool shadows (+blue), slight green in highlights"
+  delta: "colorbalance=rs=-0.04:bs=0.06:gh=0.02"
+
+teal-orange:
+  description: "Cinematic split-tone: shadows toward teal, highlights toward orange"
+  delta: "eq=saturation=2.0,colorbalance=rs=-0.08:bs=0.1:rh=0.08:bh=-0.08"
+
+skin-warmth:
+  description: "Subtle warm push on midtones only (skin-friendly)"
+  delta: "colorbalance=rm=0.06:bm=-0.03"
+
+desaturated-vintage:
+  description: "Drop saturation + warm shadows + cool highlights"
+  delta: "eq=saturation=1.3,colorbalance=rs=0.05:bs=-0.05:rh=-0.04:bh=0.04"
+
+# ─── Special-purpose ───────────────────────────────────────────────────────
+identity:
+  description: "No change — useful as a control / reference"
+  filter: "null"
+
+bw:
+  description: "Pure black-and-white"
+  filter: "hue=s=0"
