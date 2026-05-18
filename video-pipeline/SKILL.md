@@ -123,6 +123,34 @@ Intermediate files live in a temp dir and are deleted unless `--keep-temps`.
 
 ## Files in this skill
 
-- `log_to_polished.py` — main script (single CLI entry point)
+- `log_to_polished.py` — color grade + matte + blur (single CLI entry point)
+- `burn_subtitles.py` — subtitle burn pipeline (silence-trim + plain-text subs + translucent box + tail pad)
 - `luts/` — drop your `.cube` LUT files here
 - `README.md` — quick-start usage examples
+
+---
+
+## Companion: `burn_subtitles.py` — subtitle burn pipeline
+
+After `log_to_polished.py` outputs a graded MP4 and you have an `.srt`, run:
+
+```bash
+python burn_subtitles.py GRADED.mp4 transcript.srt FINAL.mp4
+```
+
+This does, in one shot, what an entire trial-and-error session previously required:
+
+1. **Detect + cut silences** (default >=0.8s @ -25dB). Uses frame-accurate `trim`+`concat` after forcing CFR 30fps — `select`/`aselect` on VFR phone footage drifts A/V by ~1 frame per 30s and was the original sync-failure source.
+2. **Auto-shift SRT** by the actual (frame-snapped) cut durations, not the nominal requests.
+3. **Stage local fonts/ dir** with IBMPlexSans-Bold.ttf — Windows ffmpeg has no fontconfig and chokes on `C:/...` in subtitle filter paths.
+4. **Burn subtitles** with the locked Yashimosh `reel-default` preset: IBM Plex Sans Bold 64px, plain white glyphs (no outline, no shadow) on a translucent dark plate. The plate is drawn via `drawbox` because libass in our ffmpeg ignores `BackColour` alpha entirely for `BorderStyle=3`. Box width is measured per-cue via PIL `getbbox` and corrected by `LIBASS_SCALE=0.80` (libass renders ~20% narrower than PIL reports). Snug padding: 8px sides, 6px top/bottom.
+5. **Tail pad** with frozen final frame + silence so the video ends >=2.0s after the last spoken word. Phone recordings typically stop within ~100ms of the last word, which reads as an abrupt cut. The 2s tail gives breathing room before IG/TT auto-loop restarts.
+
+Options:
+- `--opacity 0.4`  — box opacity 0–1 (default 0.4)
+- `--silence-thresh -25` / `--silence-min 0.8` — silence detection
+- `--tail 2.0` — required pad after last word
+- `--no-trim` — skip silence detection
+- `--keep-temps` — keep intermediates for debugging
+
+Full preset spec + the WHY behind each calibration constant lives in `~/claude-brain/Departments/creative/clients/yashimosh/SUBTITLE-PRESETS.md`.
